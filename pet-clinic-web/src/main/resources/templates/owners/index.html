@@ -5,6 +5,22 @@
     <title>List of Pet Owners</title>
 </head>
 <body>
- <h1 th:text="'Owners List'">Owners List</h1>
+<!--/*@thymesVar id="owner" type="guru.springframework.sfgpetclinic.model.Owner"*/-->
+<!--To powyżej jest wskazówką dla Intellij, z jaką klasą jest związany użyty tutaj obiekt owners-->
+ <h1 th:text="'List of Owners'">Owners List</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    <tr  th:each="owner:${owners}">
+        <td th:text="${owner.id}"}>1</td>
+        <td th:text="${owner.firstName}">FirstName</td>
+        <td th:text="${owner.lastName}">Last Name</td>
+    </tr>
+
+
+</table>
 </body>
 </html>
