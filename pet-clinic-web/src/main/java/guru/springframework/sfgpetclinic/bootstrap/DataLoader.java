@@ -14,17 +14,20 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService, VetService vetService,
-                      PetTypeService petTypeService, SpecialtyService specialtyService) {
+                      PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("czy to się wykona");
         int count = petTypeService.findAll().size();
         if (count == 0) {
             loadData();
@@ -47,11 +50,11 @@ public class DataLoader implements CommandLineRunner {
         Specialty savedRadiology = specialtyService.save(radiology);
 
         Specialty surgery = new Specialty();
-        radiology.setDescription("Surgery");
+        surgery.setDescription("Surgery");
         Specialty savedSurgery = specialtyService.save(surgery);
 
         Specialty dentistry = new Specialty();
-        radiology.setDescription("Dentistry");
+        dentistry.setDescription("Dentistry");
         Specialty savedDentistry = specialtyService.save(dentistry);
 
         Owner owner1 = new Owner();
@@ -84,6 +87,12 @@ public class DataLoader implements CommandLineRunner {
         fionasCat.setName("Meow");
         owner2.getPets().add(fionasCat);
         ownerService.save(owner2);
+
+        Visit visit = new Visit();
+        visit.setPet(fionasCat);
+        visit.setDescription("Sneezy Kitty");
+        visit.setDate(LocalDate.now().minusDays(5));
+        visitService.save(visit);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
