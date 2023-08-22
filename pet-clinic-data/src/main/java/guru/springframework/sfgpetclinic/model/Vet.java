@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name="vets")
@@ -22,4 +22,7 @@ public class Vet extends Person {
     )
     private Set<Specialty> specialties = new HashSet<>();
 
+    public Vet(Long id, String firstName, String lastName) {
+        super(id, firstName, lastName);
+    }
 }
