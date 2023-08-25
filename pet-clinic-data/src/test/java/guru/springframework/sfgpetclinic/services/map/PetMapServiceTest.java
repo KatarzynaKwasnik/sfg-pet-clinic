@@ -60,6 +60,6 @@ class PetMapServiceTest {
     void findById() {
         Pet pet = petMapService.findById(petId);
 
-        assertEquals(petId, null);
+        assertEquals(petId, pet.getId());
     }
 }
