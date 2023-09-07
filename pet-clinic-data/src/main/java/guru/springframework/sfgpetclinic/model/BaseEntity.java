@@ -22,4 +22,8 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;//rekomendacja hibernate, by używać typów złożonych
 
+    public boolean isNew() {
+        return this.id == null;
+    }
+
 }
